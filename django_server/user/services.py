@@ -15,10 +15,11 @@ def get_user(
     username:str, password:str
 ) -> CustomUser:
     if not CustomUser.objects.filter(name=username).exists():
-        raise ValueError(f"{username}은 존재하지 않는 사용자 아이디 입니다.")
+        raise ValueError(f"{username}은 존재하지 않는 사용자 아이디입니다.")
     
     is_user = authenticate(username=username, password=password)
     if not is_user:
         raise ValueError(f"비밀번호가 올바르지 않습니다.")
-    
+
     return is_user
+

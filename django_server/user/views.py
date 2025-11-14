@@ -5,12 +5,11 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 
 from .services import insert_user, get_user
-
-# Register
+ 
 class UserRegister(TemplateView):
     """
-    TemplateView의 특징
-    get()는 생략 가능하다. -> 즉, 코딩 안해도 자동 생성됨
+    TemplateView의 특징 
+    get()는 생략 가능하다. -> 즉, 코딩 안해도 자동 생성됨 
     """
     template_name = "user/register.html"
 
@@ -25,7 +24,6 @@ class UserRegister(TemplateView):
         except Exception as e:
             messages.error(request, str(e))
             return redirect("user-register")
-# Create your views here.
 
 class UserLogin(View):
     def get(self, request):
@@ -37,10 +35,10 @@ class UserLogin(View):
         try:
             username = request.POST.get("username").strip()
             password = request.POST.get("password").strip()
-
+            
             user = get_user(username, password)
             login(request, user)
-            return redirect("todolist")
+            return redirect("todolist") 
         except Exception as e:
             messages.error(request, str(e))
             return redirect("user-login")
